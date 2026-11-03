@@ -161,27 +161,33 @@ void PrintGameOverScreen( short rounds,stGameResults GameResults)
 
 }
 
-void StartGame()
+void ResetScreen()
 {
-	
-
 	system("cls");
 	system("color 07");
-	stGameResults GameRes;
 	cout << "                             Welcome to the Stone-Paper-Scissors Game! \n" << endl;
-	
-    short HowManyRounds = 0 ;
-		
-	cout << " How many rounds would you like to play ?  ";
-		
-	cin >> HowManyRounds;
 
-	PlayGame(HowManyRounds,GameRes);
-
-	PrintGameOverScreen(HowManyRounds,GameRes);
 }
 
-void GameOver()
+short ReadRoundsNumber()
+{
+	short HowManyRounds = 0;
+	cout << " Enter How Many Round Would You Like To Play : ";
+		cin >> HowManyRounds;
+		return HowManyRounds;
+}
+
+void StartGame()
+{
+	ResetScreen();
+    stGameResults GameRes;
+	short rounds = ReadRoundsNumber();
+	PlayGame(rounds,GameRes);
+
+	PrintGameOverScreen(rounds,GameRes);
+}
+
+void RunGame()
 {
 	char answer = 'Y';
 
@@ -203,6 +209,6 @@ int main()
 {
 	srand((unsigned)time(NULL));
 
-	GameOver();
+	RunGame();
 	return 0;
 }
